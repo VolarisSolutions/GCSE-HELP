@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GCSE Hub — Revision for Everyone</title>
+  <meta name="description" content="GCSE Hub — revision notes, past papers and practice quizzes for all GCSE subjects."/>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f62fe;
+      --radius:12px;
+      --max-width:1100px;
+      --gap:18px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111;line-height:1.45}
+    .container{max-width:var(--max-width);margin:28px auto;padding:0 20px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6ea8ff);
+      display:grid;place-items:center;color:white;font-weight:700;font-size:18px;
+      box-shadow:0 6px 18px rgba(15,98,254,0.12)
+    }
+    h1{font-size:22px;margin:0}
+    .tag{color:var(--muted);font-size:13px}
+    .searchbar{display:flex;gap:8px;align-items:center;background:var(--card);padding:10px;border-radius:999px;box-shadow:0 2px 6px rgba(16,24,40,0.05);flex:1;margin-left:20px}
+    input[type="search"]{border:0;outline:none;font-size:15px;background:transparent;width:100%}
+    .hero{display:flex;gap:18px;align-items:center;margin-bottom:24px}
+    .hero-left{flex:1}
+    .hero-cta{margin-top:12px;display:flex;gap:10px}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .ghost{background:transparent;border:1px solid #e6e9ef;color:var(--muted);padding:10px 12px;border-radius:10px}
+    .subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:22px}
+    .subject{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(12,18,30,0.04);display:flex;gap:10px;align-items:center}
+    .subject .icon{width:44px;height:44;border-radius:10px;background:#eef6ff;display:grid;place-items:center;font-weight:700;color:var(--accent)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(12,18,30,0.04)}
+    .topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .topic{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #f1f5f9}
+    .papers{display:flex;flex-direction:column;gap:10px}
+    a.paper{display:flex;justify-content:space-between;padding:10px;border-radius:10px;text-decoration:none;background:#fafcff;border:1px solid #eef2ff;color:#0b1b3a}
+    footer{margin-top:28px;padding:18px 0;color:var(--muted);font-size:13px;text-align:center}
+    /* quiz */
+    .quiz-q{font-weight:700;margin-bottom:8px}
+    .choices{display:flex;flex-direction:column;gap:8px}
+    .choice{padding:10px;border-radius:9px;border:1px solid #e6edf8;background:white;cursor:pointer}
+    .choice.correct{border-color:#16a34a;background:#ecfdf5}
+    .choice.wrong{border-color:#dc2626;background:#fff1f2}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>GH</div>
+        <div>
+          <h1>GCSE Hub</h1>
+          <div class="tag">Revision notes • past papers • quizzes — for all GCSE students</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;width:520px;max-width:52%">
+        <div class="searchbar" role="search" aria-label="Search topics">
+          <svg style="width:18px;height:18px;opacity:.6" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.49 21.49 20 15.5 14z"></path></svg>
+          <input id="search" type="search" placeholder="Search a topic, e.g. 'quadratics' or 'blood composition'">
+          <button id="searchBtn" class="ghost" title="Search">Search</button>
+        </div>
+        <button class="btn" id="signup">Sign up</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h2 style="margin:0 0 8px 0;font-size:20px">Revision made simple — built for GCSEs</h2>
+        <p style="margin:0;color:var(--muted)">Concise topic notes, past papers with mark schemes, and quick practice quizzes to build confidence — all free to use.</p>
+        <div class="hero-cta">
+          <button class="btn" onclick="scrollToSection('subjects')">Browse subjects</button>
+          <button class="ghost" onclick="scrollToSection('papers')">Past papers</button>
+        </div>
+      </div>
+
+      <div style="flex:0 0 360px">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div style="font-weight:700">Quick quiz — Biology</div>
+            <div class="small">1 question</div>
+          </div>
+          <div id="quiz" aria-live="polite">
+            <!-- quiz injected by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="grid">
+      <div>
+        <section id="subjects" class="card" style="margin-bottom:18px">
+          <h3 style="margin-top:0">Subjects</h3>
+          <div class="subjects" aria-label="List of subjects">
+            <div class="subject" tabindex="0"><div class="icon">M</div><div><div style="font-weight:700">Maths</div><div class="small">Algebra, geometry & stats</div></div></div>
+            <div class="subject" tabindex="0"><div class="icon">S</div><div><div style="font-weight:700">Science</div><div class="small">Biology • Chemistry • Physics</div></div></div>
+            <div class="subject" tabindex="0"><div class="icon">En</div><div><div style="font-weight:700">English</div><div class="small">Language & Literature</div></div></div>
+            <div class="subject" tabindex="0"><div class="icon">Hi</div><div><div style="font-weight:700">History</div><div class="small">Modern & British history</div></div></div>
+            <div class="subject" tabindex="0"><div class="icon">Ge</div><div><div style="font-weight:700">Geography</div><div class="small">Physical & human</div></div></div>
+            <div class="subject" tabindex="0"><div class="icon">La</div><div><div style="font-weight:700">Languages</div><div class="small">French • Spanish • German</div></div></div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-bottom:18px">
+          <h3 style="margin-top:0">Featured topics</h3>
+          <div class="topics" id="topicGrid">
+            <div class="topic"><div style="font-weight:700">Quadratic equations</div><div class="small">Step-by-step factoring & formula examples</div></div>
+            <div class="topic"><div style="font-weight:700">Cell structure</div><div class="small">Organelles, microscope images & exam tips</div></div>
+            <div class="topic"><div style="font-weight:700">Shakespeare: Macbeth</div><div class="small">Themes, characters & sample answers</div></div>
+            <div class="topic"><div style="font-weight:700">Electric circuits</div><div class="small">Current, voltage & calculations</div></div>
+          </div>
+        </section>
+
+        <section id="papers" class="card">
+          <h3 style="margin-top:0">Past papers & mark schemes</h3>
+          <div class="papers" aria-live="polite">
+            <a href="#" class="paper"><span>Maths — Higher (2019)</span><span class="small">Download</span></a>
+            <a href="#" class="paper"><span>Biology — Foundation (2020)</span><span class="small">Download</span></a>
+            <a href="#" class="paper"><span>English Lang — Paper 1 (2018)</span><span class="small">Download</span></a>
+            <a href="#" class="paper"><span>Chemistry — Combined (2017)</span><span class="small">Download</span></a>
+          </div>
+        </section>
+      </div>
+
+      <aside style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:700">Study Planner</div>
+              <div class="small">Create a simple weekly revision plan</div>
+            </div>
+            <button class="ghost" onclick="alert('Planner coming soon')">Open</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:8px">Top tips</div>
+          <ol style="margin:0;padding-left:18px">
+            <li class="small">Practice past papers under timed conditions.</li>
+            <li class="small">Make short active notes you can test yourself with.</li>
+            <li class="small">Teach a topic to someone else — it reveals gaps.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:8px">Want to help?</div>
+          <div class="small">If you have notes, past papers or quizzes you made, email <strong>hello@gcsehub.example</strong></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>Built for GCSE students • Free to use • Not affiliated with exam boards</div>
+      <div style="margin-top:8px">© <span id="year"></span> GCSE Hub</div>
+    </footer>
+  </div>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // small demo quiz (one question)
+    const quizData = {
+      q: "Which blood vessel carries blood away from the heart?",
+      choices: ["Vein","Artery","Capillary","Aorta"],
+      answerIndex: 1
+    };
+
+    function renderQuiz(){
+      const container = document.getElementById('quiz');
+      container.innerHTML = '';
+      const qEl = document.createElement('div');
+      qEl.className = 'quiz-q';
+      qEl.textContent = quizData.q;
+      container.appendChild(qEl);
+
+      const choicesEl = document.createElement('div');
+      choicesEl.className = 'choices';
+      quizData.choices.forEach((c,i)=>{
+        const b = document.createElement('button');
+        b.className = 'choice';
+        b.textContent = c;
+        b.onclick = ()=> handleChoice(b,i);
+        choicesEl.appendChild(b);
+      });
+      container.appendChild(choicesEl);
+    }
+
+    function handleChoice(btn,index){
+      const buttons = document.querySelectorAll('.choice');
+      buttons.forEach(b=>b.disabled=true);
+      if(index === quizData.answerIndex){
+        btn.classList.add('correct');
+        btn.textContent = btn.textContent + " ✓ Correct";
+      } else {
+        btn.classList.add('wrong');
+        btn.textContent = btn.textContent + " ✕";
+        // highlight correct
+        buttons[quizData.answerIndex].classList.add('correct');
+      }
+      // small feedback
+      const fb = document.createElement('div');
+      fb.className = 'small';
+      fb.style.marginTop='8px';
+      fb.textContent = index === quizData.answerIndex ? "Well done — arteries carry blood away from the heart." : "Tip: arteries carry blood away from the heart.";
+      document.getElementById('quiz').appendChild(fb);
+    }
+
+    renderQuiz();
+
+    // basic search (client-side)
+    const topics = [
+      {title:'Quadratic equations',subject:'Maths'},
+      {title:'Cell structure',subject:'Biology'},
+      {title:'Shakespeare: Macbeth',subject:'English'},
+      {title:'Electric circuits',subject:'Physics'},
+      {title:'Photosynthesis',subject:'Biology'},
+      {title:'Percentages & ratio',subject:'Maths'}
+    ];
+
+    document.getElementById('searchBtn').addEventListener('click', doSearch);
+    document.getElementById('search').addEventListener('keydown', (e)=>{ if(e.key==='Enter') doSearch() });
+
+    function doSearch(){
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const grid = document.getElementById('topicGrid');
+      grid.innerHTML = '';
+      if(!q){ topics.slice(0,4).forEach(t => grid.appendChild(topicCard(t))); return; }
+      const results = topics.filter(t => t.title.toLowerCase().includes(q) || t.subject.toLowerCase().includes(q));
+      if(results.length === 0){
+        const n = document.createElement('div'); n.className='topic'; n.textContent = "No results — try different keywords.";
+        grid.appendChild(n);
+      } else results.forEach(t => grid.appendChild(topicCard(t)));
+    }
+
+    function topicCard(t){
+      const d = document.createElement('div'); d.className='topic';
+      const h = document.createElement('div'); h.style.fontWeight='700'; h.textContent = t.title;
+      const s = document.createElement('div'); s.className='small'; s.textContent = t.subject;
+      d.appendChild(h); d.appendChild(s);
+      return d;
+    }
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    // basic signup click (placeholder)
+    document.getElementById('signup').addEventListener('click', ()=> alert('Sign up feature coming soon — or connect Firebase/auth'));
+  </script>
+</body>
+</html>
